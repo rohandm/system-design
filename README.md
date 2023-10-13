@@ -1,4 +1,4 @@
-# System Design Course
+# System Design
 
 Hey, welcome to the course. I hope this course provides a great learning experience.
 
@@ -320,7 +320,7 @@ There are more record types but for now, let's look at some of the most commonly
 - **NS (Name Server records)**: Stores the name server for a DNS entry.
 - **SOA (Start of Authority)**: Stores admin information about a domain.
 - **SRV (Service Location record)**: Specifies a port for specific services.
-- **PTR (Reverse-lookup Pointer records)**: Provides a domain name in reverse lookups.
+- **PTR (Reverse-lookup Pointer record)**: Provides a domain name in reverse lookups.
 - **CERT (Certificate record)**: Stores public key certificates.
 
 ## Subdomains
@@ -1595,7 +1595,7 @@ _The PACELC theorem was first described by [Daniel J. Abadi](https://scholar.goo
 
 PACELC theorem was developed to address a key limitation of the CAP theorem as it makes no provision for performance or latency.
 
-For example, according to the CAP theorem, a database can be considered Available if a query returns a response after 30 days. Obviously, such latency would be unacceptable for any real-world application.
+For example, according to the CAP theorem, a database can be considered available if a query returns a response after 30 days. Obviously, such latency would be unacceptable for any real-world application.
 
 # Transactions
 
@@ -1797,11 +1797,11 @@ But why do we need sharding? Here are some advantages:
 
 - **Complexity**: Sharding increases the complexity of the system in general.
 - **Joins across shards**: Once a database is partitioned and spread across multiple machines it is often not feasible to perform joins that span multiple database shards. Such joins will not be performance efficient since data has to be retrieved from multiple servers.
-- **Rebalancing**: If the data distribution is not uniform or there is a lot of load on a single shard, in such cases we have to rebalance our shards so that the requests are as equally distributed among the shards as possible.
+- **Rebalancing**: If the data distribution is not uniform or there is a lot of load on a single shard, in such cases, we have to rebalance our shards so that the requests are as equally distributed among the shards as possible.
 
 ## When to use sharding?
 
-Here are some reasons where sharding might be the right choice:
+Here are some reasons why sharding might be the right choice:
 
 - Leveraging existing hardware instead of high-end machines.
 - Maintain data in distinct geographic regions.
@@ -1925,7 +1925,7 @@ Where,
 
 As VNodes help spread the load more evenly across the physical nodes on the cluster by diving the hash ranges into smaller subranges, this speeds up the re-balancing process after adding or removing nodes. This also helps us reduce the probability of hotspots.
 
-## Data replication
+## Data Replication
 
 To ensure high availability and durability, consistent hashing replicates each data item on multiple `N` nodes in the system where the value `N` is equivalent to the _replication factor_.
 
@@ -2060,7 +2060,7 @@ Message brokers can validate, store, route, and deliver messages to the appropri
 Message brokers offer two basic message distribution patterns or messaging styles:
 
 - **[Point-to-Point messaging](https://karanpratapsingh.com/courses/system-design/message-queues)**: This is the distribution pattern utilized in message queues with a one-to-one relationship between the message's sender and receiver.
-- **[Publish-subscribe messaging](https://karanpratapsingh.com/courses/system-design/publish-subscribe)**: In this message distribution pattern, often referred to as _"pub/sub"_, the producer of each message publishes it to a topic, and multiple message consumers subscribe to topics from which they want to receive messages.
+- **[Publish-Subscribe messaging](https://karanpratapsingh.com/courses/system-design/publish-subscribe)**: In this message distribution pattern, often referred to as _"pub/sub"_, the producer of each message publishes it to a topic, and multiple message consumers subscribe to topics from which they want to receive messages.
 
 _We will discuss these messaging patterns in detail in the later tutorials._
 
@@ -2221,7 +2221,7 @@ Message topics authenticate applications that try to publish content, this allow
 
 ## Examples
 
-Here are some technologies commonly used for publish-subscribe:
+Here are some commonly used publish-subscribe technologies:
 
 - [Amazon SNS](https://aws.amazon.com/sns)
 - [Google Pub/Sub](https://cloud.google.com/pubsub)
@@ -2287,7 +2287,7 @@ Some common disadvantages of monoliths are:
 - Reduced reliability as a single bug can bring down the entire system.
 - Difficult to scale or adopt new technologies.
 
-## Modular monoliths
+## Modular Monoliths
 
 A Modular Monolith is an approach where we build and deploy a single application (that's the _Monolith_ part), but we build it in a way that breaks up the code into independent modules for each of the features needed in our application.
 
@@ -3383,7 +3383,7 @@ Here are the most common disadvantages of OAuth 2.0:
 
 OAuth 2.0 is designed only for _authorization_, for granting access to data and features from one application to another. OpenID Connect (OIDC) is a thin layer that sits on top of OAuth 2.0 that adds login and profile information about the person who is logged in.
 
-When an Authorization Server supports OIDC, it is sometimes called an identity provider (IdP), since it provides information about the Resource Owner back to the Client. OpenID Connect is relatively new, resulting in lower adoption and industry implementation of best practices compared to OAuth.
+When an Authorization Server supports OIDC, it is sometimes called an Identity Provider (IdP), since it provides information about the Resource Owner back to the Client. OpenID Connect is relatively new, resulting in lower adoption and industry implementation of best practices compared to OAuth.
 
 ### Concepts
 
@@ -3519,7 +3519,7 @@ System design is a very extensive topic and system design interviews are designe
 
 Expectations are quite different at different engineering levels as well. This is because someone with a lot of practical experience will approach it quite differently from someone who's new in the industry. As a result, it's hard to come up with a single strategy that will help us stay organized during the interview.
 
-Let's look at some common strategies for the system design interviews:
+Let's look at some common strategies for system design interviews:
 
 ## Requirements clarifications
 
@@ -4059,16 +4059,16 @@ _Note: Make sure to check any scale or traffic-related assumptions with your int
 
 ### Traffic
 
-Let us assume we have 50 million daily active users (DAU) and on average each user sends at least 10 messages to 2 different people every day. This gives us 2 billion messages per day.
+Let us assume we have 50 million daily active users (DAU) and on average each user sends at least 10 messages to 4 different people every day. This gives us 2 billion messages per day.
 
 $$
-50 \space million \times 20 \space messages = 2 \space billion/day
+50 \space million \times 40 \space messages = 2 \space billion/day
 $$
 
-Messages can also contain media such as images, videos, or other files. We can assume that 5 percent of messages are media files shared by the users, which gives us additional 200 million files we would need to store.
+Messages can also contain media such as images, videos, or other files. We can assume that 5 percent of messages are media files shared by the users, which gives us additional 100 million files we would need to store.
 
 $$
-5 \space percent \times 2 \space billion = 200 \space million/day
+5 \space percent \times 2 \space billion = 100 \space million/day
 $$
 
 **What would be Requests Per Second (RPS) for our system?**
@@ -4087,7 +4087,7 @@ $$
 2 \space billion \times 100 \space bytes = \sim 200 \space GB/day
 $$
 
-As per our requirements, we also know that around 5 percent of our daily messages (100 million) are media files. If we assume each file is 50 KB on average, we will require 10 TB of storage every day.
+As per our requirements, we also know that around 5 percent of our daily messages (100 million) are media files. If we assume each file is 100 KB on average, we will require 10 TB of storage every day.
 
 $$
 100 \space million \times 100 \space KB = 10 \space TB/day
@@ -4215,9 +4215,9 @@ Message (`Message`): The message (text, image, video, etc.) that the user wants 
 
 Result (`boolean`): Represents whether the operation was successful or not.
 
-### Join or leave a group
+### Join or leave a channel
 
-Send a message from a user to a channel (chat or group).
+Allows the user to join or leave a channel (chat or group).
 
 ```tsx
 joinGroup(userID: UUID, channelID: UUID): boolean
@@ -4476,7 +4476,7 @@ $$
 We also know that around 10 percent of our daily messages (100 million) are media files per our requirements. If we assume each file is 50 KB on average, we will require 5 TB of storage every day.
 
 $$
-100 \space million \times 100 \space KB = 5 \space TB/day
+100 \space million \times 50 \space KB = 5 \space TB/day
 $$
 
 And for 10 years, we will require about 19 PB of storage.
@@ -4860,10 +4860,10 @@ $$
 200 \space million \times 5 \space videos = 1 \space billion/day
 $$
 
-Assuming a `200:1` read/write ratio, about 50 million videos will be uploaded every day.
+Assuming a `200:1` read/write ratio, about 5 million videos will be uploaded every day.
 
 $$
-\frac{1}{200} \times 1 \space billion = 50 \space million/day
+\frac{1}{200} \times 1 \space billion = 5 \space million/day
 $$
 
 **What would be Requests Per Second (RPS) for our system?**
@@ -4876,24 +4876,24 @@ $$
 
 ### Storage
 
-If we assume each video is 100 MB on average, we will require about 5 PB of storage every day.
+If we assume each video is 100 MB on average, we will require about 500 TB of storage every day.
 
 $$
-50 \space million \times 100 \space MB = 5 \space PB/day
+5 \space million \times 100 \space MB = 500 \space TB/day
 $$
 
-And for 10 years, we will require an astounding 18,250 PB of storage.
+And for 10 years, we will require an astounding 1,825 PB of storage.
 
 $$
-5 \space PB \times 365 \space days \times 10 \space years = \sim 18,250 \space PB
+500 \space TB \times 365 \space days \times 10 \space years = \sim 1,825 \space PB
 $$
 
 ### Bandwidth
 
-As our system is handling 5 PB of ingress every day, we will require a minimum bandwidth of around 58 GB per second.
+As our system is handling 500 TB of ingress every day, we will require a minimum bandwidth of around 5.8 GB per second.
 
 $$
-\frac{5 \space PB}{(24 \space hrs \times 3600 \space seconds)} = \sim 58 \space GB/second
+\frac{500 \space TB}{(24 \space hrs \times 3600 \space seconds)} = \sim 5.8 \space GB/second
 $$
 
 ### High-level estimate
@@ -4904,9 +4904,9 @@ Here is our high-level estimate:
 | ------------------------- | ----------- |
 | Daily active users (DAU)  | 200 million |
 | Requests per second (RPS) | 12K/s       |
-| Storage (per day)         | ~5 PB       |
-| Storage (10 years)        | ~18,250 PB  |
-| Bandwidth                 | ~58 GB/s    |
+| Storage (per day)         | ~500 TB     |
+| Storage (10 years)        | ~1,825 PB   |
+| Bandwidth                 | ~5.8 GB/s   |
 
 ## Data model design
 
@@ -5040,7 +5040,7 @@ This service handles user-related concerns such as authentication and user infor
 
 **Stream Service**
 
-The tweet service will handle video streaming-related functionality.
+The stream service will handle video streaming-related functionality.
 
 **Search Service**
 
@@ -5688,9 +5688,11 @@ Here are the resources that were referenced while creating this course.
 - [IBM Blogs](https://www.ibm.com/blogs)
 - [Fastly Blogs](https://www.fastly.com/blog)
 - [NS1 Blogs](https://ns1.com/blog)
-- [Grokking the System Design Interview](https://www.educative.io/courses/grokking-the-system-design-interview)
+- [Grokking the System Design Interview](https://www.designgurus.io/course/grokking-the-system-design-interview)
+- [Grokking Microservices Design Patterns](https://www.designgurus.io/course/grokking-microservices-design-patterns)
 - [System Design Primer](https://github.com/donnemartin/system-design-primer)
 - [AWS Blogs](https://aws.amazon.com/blogs)
+- [Architecture Patterns by Microsoft](https://learn.microsoft.com/en-us/azure/architecture/patterns)
 - [Martin Fowler](https://martinfowler.com)
 - [PagerDuty resources](https://www.pagerduty.com/resources)
 - [VMWare Blogs](https://blogs.vmware.com/learning)
